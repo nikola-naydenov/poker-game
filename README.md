@@ -36,3 +36,11 @@ Technical Requirements :
     ▪You should include a build script which can compile, package and run the application. 
     ▪The application code should alsobe properly unit tested, 
         and the build script should be able to run the unit tests.
+
+# To Run
+Simply execute run.cmd or run.sh from the root directory.
+
+Prerequisites :
+    
+    ▪Maven installed and available on the path
+    ▪java installed and available on the path

@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public enum FiveCardHands implements CardHandsEnum {
     ONE_PAIR("One Pair",
-            cardList -> CardUtil.OF_A_KIND.test(2, cardList)),
+            cardList -> CardUtil.ofAKind(2, cardList)),
     TWO_PAIR("Two Pair",
             cardList -> {
                 List<Card> currentSet = cardList;
@@ -31,9 +31,9 @@ public enum FiveCardHands implements CardHandsEnum {
                 return false;
             }),
     THREE_OF_A_KIND("Three of a Kind",
-            cardList -> CardUtil.OF_A_KIND.test(3, cardList)),
+            cardList -> CardUtil.ofAKind(3, cardList)),
     STRAIGHT("Straight",
-            cardList -> CardUtil.REDUCE_TO_BOOLEAN.test(
+            cardList -> CardUtil.reduceToBoolean(
                     (card1, card2) -> (card1.getRank().compareTo(card2.getRank()) == -1),
                     cardList)),
     FLUSH("Flush",
@@ -42,17 +42,17 @@ public enum FiveCardHands implements CardHandsEnum {
                 return cardList.stream().allMatch(card -> card.getSuite().equals(aCard.getSuite()));
             }),
     FULL_HOUSE("Straight Flush",
-            cardList -> CardUtil.OF_A_KIND.test(3, cardList)
-                    && CardUtil.OF_A_KIND.test(2, cardList)),
+            cardList -> CardUtil.ofAKind(3, cardList)
+                    && CardUtil.ofAKind(2, cardList)),
     FOUR_OF_A_KIND("Four of a Kind",
-            cardList -> CardUtil.OF_A_KIND.test(4, cardList)),
+            cardList -> CardUtil.ofAKind(4, cardList)),
     STRAIGHT_FLUSH("Straight Flush",
-            cardList -> CardUtil.REDUCE_TO_BOOLEAN.test(
+            cardList -> CardUtil.reduceToBoolean(
                     (card1, card2) -> (card1.getSuite() == card2.getSuite()
                             && card1.getRank().compareTo(card2.getRank()) == -1),
                     cardList)),
     ROYAL_FLUSH("Royal Flush",
-            cardList -> CardUtil.REDUCE_TO_BOOLEAN.test(
+            cardList -> CardUtil.reduceToBoolean(
                     (card1, card2) -> (card1.getSuite() == card2.getSuite()
                     && card1.getRank().compareTo(card2.getRank()) == -1
                     && card1.getRank().compareTo(Rank.Nine) > 0),
